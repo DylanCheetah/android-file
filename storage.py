@@ -92,3 +92,14 @@ def open(filename, mode = "r"):
 
     else:
         return builtins.open(filename, mode)
+
+
+def listdir(dir):
+    """List the files inside the given dir."""
+    if dir.startswith("/external/"):
+        dir = dir.replace("/external/", "")
+        file = JavaFile(_external_storage_dir, dir)
+        return file.list()
+
+    else:
+        return os.listdir(dir)
